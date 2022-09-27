@@ -1,11 +1,14 @@
+const { Op } = require('sequelize');
 const { User } = require('../models');
 
 class UserService {
-  static async getUser({ email, password }) {
+  static async findUser({ email, password }) {
     const user = await User.findOne({ 
       where: { 
-        email,
-        password,
+        [Op.and]: [
+          { email },
+          { password },
+        ],
       },
     });
 
