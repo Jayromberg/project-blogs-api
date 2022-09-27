@@ -5,7 +5,7 @@ const errorMap = {
   },
   INVALID_FIELD: {
     code: 400,
-    message: 'Invalid field',
+    message: 'Invalid fields',
   },
 };
 

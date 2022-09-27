@@ -11,6 +11,8 @@ class UserService {
         ],
       },
     });
+    
+    if (!user) throw new Error('INVALID_FIELD');
 
     return user;
   }
