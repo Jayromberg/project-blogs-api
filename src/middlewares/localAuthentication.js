@@ -22,14 +22,9 @@ module.exports = (req, res, next) => {
     'local',
     { session: false },
     (error, user, _info) => {
-      try {
-        if (error) return next(error);
-        userExist(user);
-        req.user = user;
-        return next();
-      } catch (e) {
-        return next(e);
-      }
+      if (error) return next(error);
+      userExist(user);
+      return next();
     },
-    )(req, res, next);
-  };
+  )(req, res, next);
+};

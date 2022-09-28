@@ -7,7 +7,7 @@ const router = Router();
 
 router
   .post('/login',
-    localAuthentication,
+    resolver(localAuthentication),
     resolver(userController.getUser));
 
 module.exports = router;
