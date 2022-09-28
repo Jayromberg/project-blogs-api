@@ -24,6 +24,7 @@ module.exports = (req, res, next) => {
     (error, user, _info) => {
       if (error) return next(error);
       userExist(user);
+      req.user = user;
       return next();
     },
   )(req, res, next);
