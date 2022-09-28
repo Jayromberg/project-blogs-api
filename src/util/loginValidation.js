@@ -18,8 +18,6 @@ const bodyValidation = (body) => {
   return schema.validate(body);
 };
 
-module.exports = (req, _res, next) => {
-  const { error } = bodyValidation(req.body);
-  if (error) throw new Error(error.message);
-  next();
+module.exports = {
+  bodyValidation,
 };

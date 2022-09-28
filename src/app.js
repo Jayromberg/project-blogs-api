@@ -8,8 +8,9 @@ const authentication = require('./middlewares/authenticationStrategy');
 const app = express();
 
 app.use(express.json());
-authentication(passport);
+
 routes(app);
+authentication(passport);
 
 // ...
 
