@@ -11,8 +11,6 @@ const findUser = async ({ email, password }) => {
     },
   });
 
-  if (!user) throw new Error('INVALID_FIELD');
-
   return user;
 };
 
