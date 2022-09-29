@@ -21,6 +21,7 @@ const registerUser = async (req, res) => {
   console.log(req.user);
   const newUser = await userService.createUser(req.user);
   const token = tokenGenerator(newUser);
+  res.set('Authorization', token);
   res.status(201).json({ token });
 };
 
