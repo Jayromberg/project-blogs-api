@@ -8,6 +8,6 @@ const router = Router();
 router
   .post('/login',
     resolver(localAuthentication),
-    resolver(userController.getUser));
+    resolver(userController.login));
 
 module.exports = router;

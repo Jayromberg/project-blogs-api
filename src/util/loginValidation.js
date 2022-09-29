@@ -1,6 +1,6 @@
 const Joi = require('joi');
 
-const bodyValidation = (body) => {
+const bodyValidationToLogin = (body) => {
   const schema = Joi.object({
     email: Joi.string()
       .email()
@@ -22,5 +22,5 @@ const bodyValidation = (body) => {
 };
 
 module.exports = {
-  bodyValidation,
+  bodyValidationToLogin,
 };

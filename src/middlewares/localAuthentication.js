@@ -1,8 +1,8 @@
 const passport = require('passport');
-const { bodyValidation } = require('../util/loginValidation');
+const { bodyValidationToLogin } = require('../util/loginValidation');
 
 const loginValidation = (data) => {
-  const { error } = bodyValidation(data);
+  const { error } = bodyValidationToLogin(data);
   
   if (error) {
     throw new Error(error.message);

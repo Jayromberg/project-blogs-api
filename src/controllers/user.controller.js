@@ -1,5 +1,4 @@
 const jwt = require('jsonwebtoken');
-require('dotenv').config();
 
 const tokenGenerator = (user) => {
   const payload = {
@@ -11,12 +10,12 @@ const tokenGenerator = (user) => {
   return token;
 };
 
-const getUser = async (req, res) => {
+const login = async (req, res) => {
   const token = tokenGenerator(req.user);
   res.set('Authorization', token);
   res.status(200).json({ token });
 };
 
 module.exports = {
-  getUser,
+  login,
 };
