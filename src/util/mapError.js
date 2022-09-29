@@ -23,6 +23,14 @@ const errorMap = {
     code: 409,
     message: 'User already registered',
   },
+  TOKEN_NOT_FOUND: {
+    code: 401,
+    message: 'Token not found',
+  },
+  INVALID_TOKEN: {
+    code: 401,
+    message: 'Expired or invalid token',
+  },
 };
 
 const mapError = (type) => errorMap[type] || { code: 500, message: 'Internal error' };

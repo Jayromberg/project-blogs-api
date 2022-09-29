@@ -7,7 +7,12 @@ const tokenGenerator = (user) => {
     email: user.email,
   };
 
-  const token = jwt.sign(payload, process.env.JWT_SECRET);
+  const jwtConfig = {
+    expiresIn: '7d',
+    algorithm: 'HS256',
+  };
+
+  const token = jwt.sign(payload, process.env.JWT_SECRET, jwtConfig);
 
   return token;
 };
@@ -25,7 +30,13 @@ const registerUser = async (req, res) => {
   res.status(201).json({ token });
 };
 
+const getAllUsers = async (req, res) => {
+  const allUsers = await userService.findAllUsers();
+  return res.status(200).json(allUsers);
+};
+
 module.exports = {
   login,
   registerUser,
+  getAllUsers,
 };

@@ -1,5 +1,5 @@
 const LocalStrategy = require('passport-local').Strategy;
-const BearerStrategy = require('passport-http-bearer').Strategy;
+const HeaderStrategy = require('passport-http-header-strategy').Strategy;
 const jwt = require('jsonwebtoken');
 const { userService } = require('../services');
 
@@ -25,11 +25,17 @@ const loginStrategy = (passportLogin) => {
 };
 
 const validationStrategy = (passportToken) => {
-  passportToken.use(new BearerStrategy(
-    (token, done) => {
+  passportToken.use(new HeaderStrategy(
+    async (token, done) => {
       try {
         const payload = jwt.verify(token, process.env.JWT_SECRET);
-        done(null, payload);
+        const userData = await userService.findUserByEmail(payload.email);
+        
+        if (userData) {
+          return done(null, userData);
+        }
+
+        done(null, false);
       } catch (error) {
         done(error);
       }
