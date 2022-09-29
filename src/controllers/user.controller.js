@@ -1,4 +1,5 @@
 const jwt = require('jsonwebtoken');
+const { userService } = require('../services');
 
 const tokenGenerator = (user) => {
   const payload = {
@@ -16,6 +17,13 @@ const login = async (req, res) => {
   res.status(200).json({ token });
 };
 
+const registerUser = async (req, res) => {
+  const newUser = await userService.createUser(req.body);
+  const token = tokenGenerator(newUser);
+  res.status(201).json({ token });
+};
+
 module.exports = {
   login,
+  registerUser,
 };

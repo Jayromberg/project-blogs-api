@@ -14,6 +14,12 @@ const findUser = async ({ email, password }) => {
   return user;
 };
 
+const createUser = async (data) => {
+  const newUser = await User.create(data);
+  return newUser;
+};
+
 module.exports = {
   findUser,
+  createUser,
 };

@@ -8,6 +8,8 @@ const router = Router();
 router
   .post('/login',
     resolver(localAuthentication),
-    resolver(userController.login));
+    resolver(userController.login))
+  .post('/user',
+    resolver(userController.registerUser));
 
 module.exports = router;
