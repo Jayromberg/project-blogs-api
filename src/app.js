@@ -1,7 +1,7 @@
 const express = require('express');
 const passport = require('passport');
 const routes = require('./routes');
-const authentication = require('./middlewares/authenticationStrategy');
+const { authenticationStrategy } = require('./middlewares');
 
 // ...
 
@@ -10,7 +10,7 @@ const app = express();
 app.use(express.json());
 
 routes(app);
-authentication(passport);
+authenticationStrategy(passport);
 
 // ...
 

@@ -4,6 +4,7 @@ const { userService } = require('../services');
 const tokenGenerator = (user) => {
   const payload = {
     id: user.id,
+    email: user.email,
   };
 
   const token = jwt.sign(payload, process.env.JWT_SECRET);
@@ -18,7 +19,6 @@ const login = async (req, res) => {
 };
 
 const registerUser = async (req, res) => {
-  console.log(req.user);
   const newUser = await userService.createUser(req.user);
   const token = tokenGenerator(newUser);
   res.set('Authorization', token);
