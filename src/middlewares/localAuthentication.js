@@ -3,7 +3,7 @@ const { bodyValidation } = require('../util/loginValidation');
 
 const loginValidation = (data) => {
   const { error } = bodyValidation(data);
-
+  
   if (error) {
     throw new Error(error.message);
   }

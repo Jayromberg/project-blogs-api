@@ -6,11 +6,14 @@ const bodyValidation = (body) => {
       .email()
       .required()
       .messages({
+        'string.email': 'UNDEFINED_FIELD',
+        'string.empty': 'UNDEFINED_FIELD',
         'any.required': 'UNDEFINED_FIELD',
       }),
     password: Joi.string()
       .required()
       .messages({
+        'string.empty': 'UNDEFINED_FIELD',
         'any.required': 'UNDEFINED_FIELD',
       }),
   });
