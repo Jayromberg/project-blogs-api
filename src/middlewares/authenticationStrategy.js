@@ -11,8 +11,13 @@ const loginStrategy = (passportLogin) => {
   },
   (async (email, password, done) => {
     try {
-      const user = await userService.findUser({ email, password });
-      done(null, user);
+      const userData = await userService.findUserByEmail(email);
+
+      if (userData.password === password) {
+        return done(null, userData);
+      }
+
+      done(null, false);
     } catch (error) {
       done(error);
     }

@@ -1,5 +1,24 @@
 const passport = require('passport');
-const { bodyValidationToLogin } = require('../util/loginValidation');
+const Joi = require('joi');
+
+const bodyValidationToLogin = (body) => {
+  const schema = Joi.object({
+    email: Joi.string()
+      .required()
+      .messages({
+        'string.empty': 'UNDEFINED_FIELD',
+        'any.required': 'UNDEFINED_FIELD',
+      }),
+    password: Joi.string()
+      .required()
+      .messages({
+        'string.empty': 'UNDEFINED_FIELD',
+        'any.required': 'UNDEFINED_FIELD',
+      }),
+  });
+
+  return schema.validate(body);
+};
 
 const loginValidation = (data) => {
   const { error } = bodyValidationToLogin(data);
