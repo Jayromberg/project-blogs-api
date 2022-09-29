@@ -18,7 +18,8 @@ const login = async (req, res) => {
 };
 
 const registerUser = async (req, res) => {
-  const newUser = await userService.createUser(req.body);
+  console.log(req.user);
+  const newUser = await userService.createUser(req.user);
   const token = tokenGenerator(newUser);
   res.status(201).json({ token });
 };
