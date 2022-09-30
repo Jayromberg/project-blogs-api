@@ -13,6 +13,12 @@ const registerCategory = async (req, res) => {
   res.status(201).json(newCategory);
 };
 
+const getAllCategories = async (_req, res) => {
+  const allCategories = await categoryService.findAllCategories();
+  res.status(200).json(allCategories);
+};
+
 module.exports = {
   registerCategory,
+  getAllCategories,
 };

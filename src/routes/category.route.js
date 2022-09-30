@@ -8,6 +8,9 @@ const router = Router();
 router
   .post('/categories',
     resolver(accessAuthentication),
-    resolver(categoryController.registerCategory));
+    resolver(categoryController.registerCategory))
+  .get('/categories',
+    resolver(accessAuthentication),
+    resolver(categoryController.getAllCategories));
 
 module.exports = router;
