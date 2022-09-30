@@ -31,6 +31,10 @@ const errorMap = {
     code: 401,
     message: 'Expired or invalid token',
   },
+  USER_DOES_NOT_EXIST: {
+    code: 404,
+    message: 'User does not exist',
+  },
 };
 
 const mapError = (type) => errorMap[type] || { code: 500, message: 'Internal error' };

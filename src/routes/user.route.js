@@ -13,6 +13,9 @@ router
   .post('/login',
     resolver(loginAuthentication),
     resolver(userController.login))
+  .get('/user/:id',
+    resolver(accessAuthentication),
+    resolver(userController.getUserById))
   .post('/user',
     resolver(registrationAuthentication),
     resolver(userController.registerUser))
