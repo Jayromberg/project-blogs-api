@@ -35,6 +35,10 @@ const errorMap = {
     code: 404,
     message: 'User does not exist',
   },
+  NAME_IS_REQUIRED: {
+    code: 400,
+    message: '"name" is required',
+  },
 };
 
 const mapError = (type) => errorMap[type] || { code: 500, message: 'Internal error' };
