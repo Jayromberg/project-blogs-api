@@ -19,7 +19,6 @@ module.exports = {
       },
       userId: {
         allowNull: false,
-        primaryKey: true,
         type: Sequelize.INTEGER,
         onUpdate: 'CASCADE',
         onDelete: 'CASCADE',
