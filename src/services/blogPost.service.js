@@ -89,9 +89,26 @@ const findPostById = (id) => {
   return post;
 };
 
+const updatePost = async (id, body) => {
+  const [update] = await BlogPost.update({
+    ...body,
+    updated: dateGenerate(),
+  }, {
+    where: { id },
+  });
+
+  if (update === 1) {
+    const post = await findPostById(id);
+    return post;
+  }
+
+  return null;
+};
+
 module.exports = {
   createPost,
   findAllPostCategory,
   findAllPosts,
   findPostById,
+  updatePost,
 };

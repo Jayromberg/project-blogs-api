@@ -13,7 +13,7 @@ const bodyValidationToRegisterPost = (req) => {
         'string.empty': 'UNDEFINED_FIELD',
         'any.required': 'UNDEFINED_FIELD',
       }),
-    categoryIds: Joi.array().items(Joi.number()).required().messages({
+    categoryIds: Joi.array().items(Joi.number()).messages({
       'any.required': 'UNDEFINED_FIELD',
       'array.base': 'UNDEFINED_FIELD',
       'number.base': 'UNDEFINED_FIELD',
@@ -78,8 +78,26 @@ const getPostById = async (req, res) => {
   res.status(200).json(post);
 };
 
+const userValidatorToUpdate = async (req) => {
+  const { params, user: { id } } = req;
+  const { userId } = await blogPostService.findPostById(params.id);
+
+  if (userId !== id) { 
+    throw new Error('UNAUTHORIZED_USER');
+  }
+};
+
+const updatePost = async (req, res) => {
+  validationToPost(req);
+  await userValidatorToUpdate(req);
+  const { id } = req.params;
+  const update = await blogPostService.updatePost(id, req.body);
+  res.status(200).json(update);
+};
+
 module.exports = {
   registerPost,
   getAllPosts,
   getPostById,
+  updatePost,
 };

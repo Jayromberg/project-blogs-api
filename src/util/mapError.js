@@ -47,6 +47,10 @@ const errorMap = {
     code: 404,
     message: 'Post does not exist',
   },
+  UNAUTHORIZED_USER: {
+    code: 401,
+    message: 'Unauthorized user',
+  },
 };
 
 const mapError = (type) => errorMap[type] || { code: 500, message: 'Internal error' };
