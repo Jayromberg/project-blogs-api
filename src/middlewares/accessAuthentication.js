@@ -13,13 +13,14 @@ module.exports = (req, res, next) => {
   passport.authenticate(
     'header',
     { session: false },
-    (error, _user, _info) => {
+    (error, user, _info) => {
       if (error && error.name === 'JsonWebTokenError') {
         return next(new Error('INVALID_TOKEN'));
       }
       
       if (error) return next(error);
 
+      req.user = user;
       return next();
     },
   )(req, res, next);

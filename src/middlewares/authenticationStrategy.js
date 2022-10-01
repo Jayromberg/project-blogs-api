@@ -32,7 +32,7 @@ const validationStrategy = (passportToken) => {
         const userData = await userService.findUserByEmail(payload.email);
         
         if (userData) {
-          return done(null, userData);
+          return done(null, payload);
         }
 
         done(null, false);
