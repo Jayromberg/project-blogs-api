@@ -65,7 +65,21 @@ const getAllPosts = async (_req, res) => {
   res.status(200).json(allPosts);
 };
 
+const postExist = (post) => {
+  if (!post) {
+    throw new Error('POST_DOES_NOT_EXIST');
+  }
+};
+
+const getPostById = async (req, res) => {
+  const { id } = req.params;
+  const post = await blogPostService.findPostById(id);
+  postExist(post);
+  res.status(200).json(post);
+};
+
 module.exports = {
   registerPost,
   getAllPosts,
+  getPostById,
 };

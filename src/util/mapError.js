@@ -43,6 +43,10 @@ const errorMap = {
     code: 400,
     message: '"categoryIds" not found',
   },
+  POST_DOES_NOT_EXIST: {
+    code: 404,
+    message: 'Post does not exist',
+  },
 };
 
 const mapError = (type) => errorMap[type] || { code: 500, message: 'Internal error' };
