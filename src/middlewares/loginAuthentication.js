@@ -1,16 +1,16 @@
 const passport = require('passport');
 const Joi = require('joi');
 
+const { validateString } = require('../util/joiValidations');
+
 const bodyValidationToLogin = (body) => {
   const schema = Joi.object({
-    email: Joi.string()
-      .required()
+    email: validateString()
       .messages({
         'string.empty': 'UNDEFINED_FIELD',
         'any.required': 'UNDEFINED_FIELD',
       }),
-    password: Joi.string()
-      .required()
+    password: validateString()
       .messages({
         'string.empty': 'UNDEFINED_FIELD',
         'any.required': 'UNDEFINED_FIELD',

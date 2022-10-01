@@ -39,6 +39,10 @@ const errorMap = {
     code: 400,
     message: '"name" is required',
   },
+  CATEGORY_IDS_NOT_FOUND: {
+    code: 400,
+    message: '"categoryIds" not found',
+  },
 };
 
 const mapError = (type) => errorMap[type] || { code: 500, message: 'Internal error' };

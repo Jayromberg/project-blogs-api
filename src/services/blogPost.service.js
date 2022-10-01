@@ -1,4 +1,4 @@
-const { BlogPost, PostCategory, sequelize } = require('../models');
+const { BlogPost, PostCategory, Category, sequelize } = require('../models');
 
 const dateGenerate = () => {
   const date = new Date().toISOString();
@@ -49,6 +49,15 @@ const createPost = async (req) => {
   return result;
 };
 
+const findAllPostCategory = async (categoryId) => {
+  const categories = await Category.findAndCountAll({
+    where: { id: categoryId },
+  });
+
+  return categories;
+};
+
 module.exports = {
   createPost,
+  findAllPostCategory,
 };

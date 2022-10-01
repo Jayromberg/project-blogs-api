@@ -1,17 +1,19 @@
 const passport = require('passport');
 const Joi = require('joi');
 
+const { validateStringAndMinimum, validateEmail } = require('../util/joiValidations');
+
 const bodyValidationToRegistration = (body) => {
   const schema = Joi.object({
-    displayName: Joi.string().min(8).required()
+    displayName: validateStringAndMinimum(8)
       .messages({
         'string.min': 'INVALID_DISPLAY_NAME',
       }),
-    email: Joi.string().email().required()
+    email: validateEmail()
       .messages({
         'string.email': 'INVALID_EMAIL',
       }),
-    password: Joi.string().min(6).required()
+    password: validateStringAndMinimum(6)
       .messages({
         'string.min': 'INVALID_PASSWORD',
       }),
