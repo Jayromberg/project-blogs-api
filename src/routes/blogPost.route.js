@@ -8,9 +8,9 @@ const router = Router();
 router
   .post('/post',
     resolver(accessAuthentication),
-    resolver(blogPostController.registerPost));
-//   .get('/categories',
-//     resolver(accessAuthentication),
-//     resolver(categoryController.getAllCategories));
+    resolver(blogPostController.registerPost))
+  .get('/post',
+    resolver(accessAuthentication),
+    resolver(blogPostController.getAllPosts));
 
 module.exports = router;

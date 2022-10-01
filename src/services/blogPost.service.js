@@ -1,4 +1,4 @@
-const { BlogPost, PostCategory, Category, sequelize } = require('../models');
+const { BlogPost, PostCategory, User, Category, sequelize } = require('../models');
 
 const dateGenerate = () => {
   const date = new Date().toISOString();
@@ -57,7 +57,23 @@ const findAllPostCategory = async (categoryId) => {
   return categories;
 };
 
+const findAllPosts = () => {
+  const posts = BlogPost.findAll({
+    include: [{
+      model: User,
+      as: 'user',
+      attributes: { exclude: ['password'] },
+    }, {
+      model: Category,
+      as: 'categories',
+      through: { attributes: [] },
+    }],
+  });
+  return posts;
+};
+
 module.exports = {
   createPost,
   findAllPostCategory,
+  findAllPosts,
 };

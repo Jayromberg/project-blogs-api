@@ -45,7 +45,7 @@ const validateCategories = async (req) => {
     .catch((error) => error);
 };
 
-const categoryExist = async (req) => {
+const categoriesExist = async (req) => {
   const response = await validateCategories(req);
 
   if (response) {
@@ -55,11 +55,17 @@ const categoryExist = async (req) => {
 
 const registerPost = async (req, res) => {
   validationToPost(req);
-  await categoryExist(req);
+  await categoriesExist(req);
   const newPost = await blogPostService.createPost(req);
   res.status(201).json(newPost);
 };
 
+const getAllPosts = async (_req, res) => {
+  const allPosts = await blogPostService.findAllPosts();
+  res.status(200).json(allPosts);
+};
+
 module.exports = {
   registerPost,
+  getAllPosts,
 };
