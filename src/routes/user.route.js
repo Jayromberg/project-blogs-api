@@ -13,6 +13,9 @@ router
   .post('/login',
     resolver(loginAuthentication),
     resolver(userController.login))
+  .delete('/user/me',
+    resolver(accessAuthentication),
+    resolver(userController.deleteME))
   .get('/user/:id',
     resolver(accessAuthentication),
     resolver(userController.getUserById))
