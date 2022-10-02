@@ -9,6 +9,9 @@ router
   .post('/post',
     resolver(accessAuthentication),
     resolver(blogPostController.registerPost))
+  .get('/post/search',
+    resolver(accessAuthentication),
+    resolver(blogPostController.searchPost))
   .get('/post/:id',
     resolver(accessAuthentication),
     resolver(blogPostController.getPostById))
