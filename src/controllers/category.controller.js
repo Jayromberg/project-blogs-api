@@ -1,11 +1,5 @@
 const { categoryService } = require('../services');
-
-const nameExist = (req) => {
-  const { name } = req.body;
-  if (!name) {
-    throw new Error('NAME_IS_REQUIRED');
-  }
-};
+const { nameExist } = require('./validations/category.validations');
 
 const registerCategory = async (req, res) => {
   nameExist(req);
