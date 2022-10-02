@@ -1,27 +1,6 @@
-const jwt = require('jsonwebtoken');
 const { userService } = require('../services');
-
-const tokenGenerator = (user) => {
-  const payload = {
-    id: user.id,
-    email: user.email,
-  };
-
-  const jwtConfig = {
-    expiresIn: '7d',
-    algorithm: 'HS256',
-  };
-
-  const token = jwt.sign(payload, process.env.JWT_SECRET, jwtConfig);
-
-  return token;
-};
-
-const userExist = (user) => {
-  if (!user) {
-    throw new Error('USER_DOES_NOT_EXIST');
-  }
-};
+const { tokenGenerator } = require('./jwt/token');
+const { userExist } = require('./validations/user.validations');
 
 const login = async (req, res) => {
   const token = tokenGenerator(req.user);
