@@ -4,7 +4,7 @@ const {
   validationToPost,
   categoriesExist,
   postExist,
-  userValidatorToUpdate,
+  userValidatorToUpdateAndDelete,
 } = require('./validations/blogPost.validations');
 
 const registerPost = async (req, res) => {
@@ -28,10 +28,19 @@ const getPostById = async (req, res) => {
 
 const updatePost = async (req, res) => {
   validationToPost(req);
-  await userValidatorToUpdate(req);
+  await userValidatorToUpdateAndDelete(req);
   const { id } = req.params;
   const update = await blogPostService.updatePost(id, req.body);
   res.status(200).json(update);
+};
+
+const deletePost = async (req, res) => {
+  const { id } = req.params;
+  const post = await blogPostService.findPostById(id);
+  postExist(post);
+  await userValidatorToUpdateAndDelete(req);
+  await blogPostService.deletePost(id);
+  res.status(204).send();
 };
 
 module.exports = {
@@ -39,4 +48,5 @@ module.exports = {
   getAllPosts,
   getPostById,
   updatePost,
+  deletePost,
 };

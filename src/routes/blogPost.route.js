@@ -15,6 +15,9 @@ router
   .put('/post/:id',
     resolver(accessAuthentication),
     resolver(blogPostController.updatePost))
+  .delete('/post/:id',
+    resolver(accessAuthentication),
+    resolver(blogPostController.deletePost))
   .get('/post',
     resolver(accessAuthentication),
     resolver(blogPostController.getAllPosts));

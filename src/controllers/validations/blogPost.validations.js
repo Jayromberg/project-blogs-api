@@ -36,20 +36,20 @@ const validateCategories = async (req) => {
   .catch((error) => error);
 };
 
-const userValidatorToUpdate = async (req) => {
-  const { params, user: { id } } = req;
-  const { userId } = await blogPostService.findPostById(params.id);
-
-  if (userId !== id) { 
-    throw new Error('UNAUTHORIZED_USER');
-  }
-};
-
 const validationToPost = (body) => {
   const { error } = bodyValidationToRegisterPost(body);
 
   if (error) {
     throw new Error(error.message);
+  }
+};
+
+const userValidatorToUpdateAndDelete = async (req) => {
+  const { params, user: { id } } = req;
+  const { userId } = await blogPostService.findPostById(params.id);
+
+  if (userId !== id) { 
+    throw new Error('UNAUTHORIZED_USER');
   }
 };
 
@@ -71,5 +71,5 @@ module.exports = {
   validationToPost,
   categoriesExist,
   postExist,
-  userValidatorToUpdate,
+  userValidatorToUpdateAndDelete,
 };
