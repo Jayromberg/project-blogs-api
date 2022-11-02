@@ -234,4 +234,4 @@ git clone git@github.com:Jayromberg/project-blogs-api.git
 
 ---
 
-⭐️ Baseado em [João Pedro Oliveira](https://www.linkedin.com/in/jpoliveira7/)
+⭐️ README de referência: [João Pedro Oliveira](https://www.linkedin.com/in/jpoliveira7/)
