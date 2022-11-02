@@ -11,7 +11,7 @@ Foi desenvolvido uma API e um banco de dados para a produção de conteúdo para
 Clone o repositório:
 
 ```
-git clone git@github.com:jpoliveiramateus/blogs-api.git
+git clone git@github.com:Jayromberg/project-blogs-api.git
 ```
 <details>
   <summary><strong>🐋 Rodando no Docker vs Localmente</strong></summary>
@@ -225,6 +225,7 @@ git clone git@github.com:jpoliveiramateus/blogs-api.git
 - [Sequelize(ORM)](https://sequelize.org/);
 - [JWT(Autenticação)](https://jwt.io/);
 - [Joi](https://joi.dev/api/?v=17.6.0);
+- [Passport](https://www.passportjs.org/);
 - [Docker](https://www.docker.com/);
 - JavaScript ES6+;
 
